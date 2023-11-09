@@ -1,21 +1,12 @@
-// {
-//   "compilerOptions": {
-//     "jsx": "react-jsx",
-//     "baseUrl": ".",
-//     "paths": {
-//       "~/*": ["src/*", "build/*"]
-//     }
-//   }
-// }
-
 {
   "compilerOptions": {
     "jsx": "react-jsx",
-    "baseUrl": ".",
-    "paths": {
-      "*": ["src/*"],
-      "test/*": ["test/*"],
-      "underscore": ["lodash"]
-    }
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "target": "es6",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "baseUrl": "."
   }
 }
