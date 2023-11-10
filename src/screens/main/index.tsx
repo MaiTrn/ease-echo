@@ -2,7 +2,7 @@ import { StyleSheet, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { PainExercise } from './pain-exercise';
 import { PainInfo } from './PainInfo';
-import { Distraction } from './distraction/Distraction';
+import { Distraction } from './distraction';
 import { Profile } from './Profile';
 import {
   ChatCircleDots,
