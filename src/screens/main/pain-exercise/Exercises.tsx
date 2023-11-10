@@ -1,8 +1,9 @@
-import { Text } from 'react-native';
+import { FlatList, Text } from 'react-native';
 import { Button } from 'react-native-paper';
 
 import { Container } from '../../../components';
 import { palette } from '../../../assets/constants';
+import { ExerciseList } from './exercise/ExerciseList';
 
 export const Exercise = ({ navigation, route }): React.ReactElement => {
   const { bodyParts } = route.params;
@@ -20,6 +21,7 @@ export const Exercise = ({ navigation, route }): React.ReactElement => {
       >
         <Text>Complete Level</Text>
       </Button>
+      <ExerciseList />
     </Container>
   );
 };
