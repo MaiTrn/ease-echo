@@ -1,8 +1,9 @@
 import LottieView from 'lottie-react-native';
 import React from 'react';
 import { Image, StyleSheet, Text } from 'react-native';
-import { Button, Container } from '../../components';
+import { Container } from '../../components';
 import { palette } from '../../assets/constants';
+import { Button } from 'react-native-paper';
 
 export const LevelComplete = ({ navigation }): React.ReactElement => {
   return (
@@ -12,7 +13,8 @@ export const LevelComplete = ({ navigation }): React.ReactElement => {
         <Text style={styles.header}>Congratulations!</Text>
         <Text>You earned 20 points!</Text>
         <Button
-          containerStyle={{ marginBottom: 20 }}
+          mode="contained"
+          style={{ marginBottom: 20, backgroundColor: palette.primary }}
           onPress={() => navigation.navigate('Dashboard')}
         >
           <Text style={{ color: palette.white, fontSize: 16, fontWeight: '600' }}>

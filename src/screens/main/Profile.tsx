@@ -1,5 +1,7 @@
 import { Text } from 'react-native';
-import { Button, Container } from '../../components';
+import { Container } from '../../components';
+import { Button } from 'react-native-paper';
+import { palette } from '../../assets/constants';
 
 export const Profile = ({ navigation }): React.ReactElement => {
   const onSignOut = () => {
@@ -11,7 +13,7 @@ export const Profile = ({ navigation }): React.ReactElement => {
 
   return (
     <Container>
-      <Button onPress={onSignOut}>
+      <Button mode="contained" buttonColor={palette.primary} onPress={onSignOut}>
         <Text>Log out</Text>
       </Button>
     </Container>

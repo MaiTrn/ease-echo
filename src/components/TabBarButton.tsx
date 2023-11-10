@@ -11,19 +11,12 @@ import { palette } from '../assets/constants';
 
 interface CustomButtonProps extends Omit<ButtonProps, 'title'> {
   children: React.ReactNode;
-  containerStyle?: StyleProp<ViewStyle>;
-  buttonStyle?: StyleProp<ViewStyle>;
 }
 
-export const Button = ({
-  children,
-  onPress,
-  containerStyle,
-  buttonStyle,
-}: CustomButtonProps): React.ReactElement => {
+export const TabBarButton = ({ children, onPress }: CustomButtonProps): React.ReactElement => {
   return (
-    <View style={[styles.container, containerStyle]}>
-      <TouchableOpacity style={[styles.button, buttonStyle]} onPress={onPress}>
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.button} onPress={onPress}>
         {children}
       </TouchableOpacity>
     </View>
@@ -33,14 +26,16 @@ export const Button = ({
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    backgroundColor: 'transparent',
+    flex: 1,
+    height: 80,
+    backgroundColor: palette.white,
   },
   button: {
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 16,
-    backgroundColor: palette.action,
-    width: 200,
-    height: 40,
+    backgroundColor: palette.white,
+    height: 60,
+    width: 80,
+    borderRadius: 0,
   },
 });

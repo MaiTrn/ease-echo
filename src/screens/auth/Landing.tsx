@@ -1,6 +1,8 @@
-import { View, Text, StyleSheet } from 'react-native';
-import { Button } from '../../components';
-// import DocTorLogo from './../../assets/Doctor.svg';
+import React from 'react';
+import { Button } from 'react-native-paper';
+import { View, Text, StyleSheet, StatusBar, Image } from 'react-native';
+
+import { palette } from '../../assets/constants';
 
 export const Landing = ({ navigation }) => {
   // TODO: Handle patient login
@@ -20,17 +22,35 @@ export const Landing = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.logoContainer}>{/* <DocTorLogo /> */}</View>
-      <View style={styles.buttonContainer}>
-        <Button containerStyle={styles.button} onPress={handlePatientLogin}>
-          <Text style={styles.buttonText}>Login as Patient</Text>
-        </Button>
-        <Button containerStyle={styles.button} onPress={handleDoctorLogin}>
-          <Text style={styles.buttonText}>Login as Doctor</Text>
-        </Button>
-        <Text style={styles.registerText} onPress={handleRegister}>
-          Don't have an account? Register
-        </Text>
+      <StatusBar />
+      <View style={styles.header}>
+        <Image
+          source={require('../../assets/patient.png')}
+          style={{ marginBottom: 90, width: 300, height: 100 }}
+        />
+      </View>
+      <View style={styles.footer}>
+        <View
+          style={{
+            ...StyleSheet.absoluteFillObject,
+            backgroundColor: palette.background,
+          }}
+        >
+          <View style={styles.footerContent}>
+            <Text style={styles.subTitle}>Ease Echo</Text>
+            <View style={styles.buttonContainer}>
+              <Button mode="contained" style={styles.button} onPress={handlePatientLogin}>
+                <Text style={styles.buttonText}>Login as Patient</Text>
+              </Button>
+              <Button mode="contained" style={styles.button} onPress={handleDoctorLogin}>
+                <Text style={styles.buttonText}>Login as Doctor</Text>
+              </Button>
+              <Text style={styles.registerText} onPress={handleRegister}>
+                Don't have an account? Register
+              </Text>
+            </View>
+          </View>
+        </View>
       </View>
     </View>
   );
@@ -39,20 +59,40 @@ export const Landing = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f5f5f5', // or any color that matches your design
+    backgroundColor: palette.background,
   },
-  logoContainer: {
-    // styles for logo container
+  header: {
+    flex: 1,
+    backgroundColor: palette.background,
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
+  footer: {
+    height: 400,
+  },
+  footerContent: {
+    flex: 1,
+    backgroundColor: palette.secondary,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    padding: 50,
+  },
+  subTitle: {
+    color: palette.primary,
+    textAlign: 'center',
+    marginBottom: 12,
+    fontSize: 40,
+    fontWeight: '600',
   },
   buttonContainer: {
     // styles for button container
   },
   button: {
     // Base styles for button
-    borderRadius: 5,
     marginVertical: 10,
+    backgroundColor: palette.primary,
   },
   patientButton: {
     // Additional styles for patient button

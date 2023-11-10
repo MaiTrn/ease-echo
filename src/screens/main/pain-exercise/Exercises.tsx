@@ -1,5 +1,8 @@
 import { Text } from 'react-native';
-import { Button, Container } from '../../../components';
+import { Button } from 'react-native-paper';
+
+import { Container } from '../../../components';
+import { palette } from '../../../assets/constants';
 
 export const Exercise = ({ navigation, route }): React.ReactElement => {
   const { bodyParts } = route.params;
@@ -10,7 +13,11 @@ export const Exercise = ({ navigation, route }): React.ReactElement => {
         <Text>{item}</Text>
       ))}
       <Text>Exercise!</Text>
-      <Button onPress={() => navigation.navigate('LevelComplete')}>
+      <Button
+        mode="contained"
+        buttonColor={palette.primary}
+        onPress={() => navigation.navigate('LevelComplete')}
+      >
         <Text>Complete Level</Text>
       </Button>
     </Container>

@@ -1,7 +1,9 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import { Button, Container, TextInput } from '../../components';
+import { Button } from 'react-native-paper';
+import { Container, TextInput } from '../../components';
 import { User, SignIn } from 'phosphor-react-native';
+import { palette } from '../../assets/constants';
 
 export const Login =
   (userType: string) =>
@@ -28,7 +30,7 @@ export const Login =
           secureTextEntry
           styleOverrides={styles.input}
         />
-        <Button onPress={onSignIn} containerStyle={styles.button}>
+        <Button mode="contained" onPress={onSignIn} style={styles.button}>
           <Text style={styles.buttonText}>Login as {userType}</Text>
         </Button>
         <Text style={styles.register}>
@@ -60,6 +62,7 @@ const styles = StyleSheet.create({
   button: {
     // Style your Button component
     marginTop: 10,
+    backgroundColor: palette.primary,
   },
   buttonText: {
     // Style the text inside your Button component

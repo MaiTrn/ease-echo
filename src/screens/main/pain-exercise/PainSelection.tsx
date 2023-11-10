@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, Switch } from 'react-native';
 import Body from 'react-native-body-highlighter';
-import { Button, Container } from '../../../components';
+import { Container } from '../../../components';
+import { Button } from 'react-native-paper';
 
 export const PainSelection = ({ navigation }): React.ReactElement => {
   const [bodyPartsSelected, setBodyPartsSelected] = useState([]);
@@ -35,7 +36,7 @@ export const PainSelection = ({ navigation }): React.ReactElement => {
         backOnly={false}
       />
       <Switch onValueChange={toggleSwitch} value={isBackSideEnabled} />
-      <Button buttonStyle={styles.button} onPress={navigateToNextPage}>
+      <Button style={styles.button} onPress={navigateToNextPage}>
         <Text style={styles.buttonText}>Go to exercise</Text>
       </Button>
     </Container>

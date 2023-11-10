@@ -1,8 +1,8 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { PainExercise } from './pain-exercise';
 import { PainInfo } from './PainInfo';
-import { Distraction } from './Distraction';
+import { Distraction } from './distraction/Distraction';
 import { Profile } from './Profile';
 import {
   ChatCircleDots,
@@ -14,7 +14,7 @@ import {
 } from 'phosphor-react-native';
 import { palette } from '../../assets/constants';
 import { Dashboard } from './Dashboard';
-import { Button, AddButton } from '../../components';
+import { AddButton, TabBarButton } from '../../components';
 
 const TabIcon = ({ focused, color, route }) => {
   const props: IconProps = {
@@ -53,13 +53,7 @@ export const Main = (): React.ReactElement => {
         tabBarActiveTintColor: palette.primary,
         tabBarInactiveTintColor: palette.darkGray,
         tabBarIcon: (props) => <TabIcon {...props} route={route} />,
-        tabBarButton: (props) => (
-          <Button
-            containerStyle={styles.containerStyle}
-            buttonStyle={styles.buttonStyle}
-            {...props}
-          />
-        ),
+        tabBarButton: (props) => <TabBarButton {...props} />,
       })}
     >
       <Tab.Screen name="PainExercise" component={PainExercise} />
