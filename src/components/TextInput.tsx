@@ -1,12 +1,17 @@
 import React from 'react';
-import { View, StyleSheet, TextInput as RNTextInput } from 'react-native';
+import { View, StyleSheet, TextInput as RNTextInput, TextInputProps } from 'react-native';
 import { palette } from '../assets/constants';
 
-interface TextInputProps {
+interface CustomTextInputProps extends TextInputProps {
   icon?: React.ReactNode;
+  styleOverrides?: object;
 }
 
-export const TextInput = ({ icon, ...props }: TextInputProps): React.ReactElement => {
+export const TextInput = ({
+  icon,
+  styleOverrides,
+  ...props
+}: CustomTextInputProps): React.ReactElement => {
   return (
     <View style={{ borderColor: palette.darkGray, ...styles.container }}>
       {icon}

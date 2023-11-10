@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, Switch } from 'react-native';
 import Body from 'react-native-body-highlighter';
 import { Button, Container } from '../../../components';
-import { CommonActions } from '@react-navigation/native';
 
 export const PainSelection = ({ navigation }): React.ReactElement => {
   const [bodyPartsSelected, setBodyPartsSelected] = useState([]);
@@ -17,10 +16,11 @@ export const PainSelection = ({ navigation }): React.ReactElement => {
       setBodyPartsSelected([...bodyPartsSelected, { slug: muscle.slug, intensity: 1 }]);
     }
   };
-  console.log(bodyPartsSelected.map((item) => item.slug));
 
   const navigateToNextPage = () => {
-    navigation.dispatch(CommonActions.navigate('Exercise'));
+    console.log(bodyPartsSelected);
+    const bodyParts = bodyPartsSelected?.map((item) => item.slug);
+    navigation.navigate('Exercise', { bodyParts });
   };
 
   return (

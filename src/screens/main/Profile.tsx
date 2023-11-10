@@ -1,15 +1,12 @@
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 import { Button, Container } from '../../components';
-import { CommonActions, useNavigation } from '@react-navigation/native';
 
 export const Profile = ({ navigation }): React.ReactElement => {
   const onSignOut = () => {
-    navigation.dispatch(
-      CommonActions.reset({
-        index: 0,
-        routes: [{ name: 'Login' }],
-      }),
-    );
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'Landing' }],
+    });
   };
 
   return (

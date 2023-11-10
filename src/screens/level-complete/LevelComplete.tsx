@@ -3,10 +3,8 @@ import React from 'react';
 import { Image, StyleSheet, Text } from 'react-native';
 import { Button, Container } from '../../components';
 import { palette } from '../../assets/constants';
-import { CommonActions, useNavigation } from '@react-navigation/native';
 
-export const LevelComplete = (): React.ReactElement => {
-  const navigator = useNavigation();
+export const LevelComplete = ({ navigation }): React.ReactElement => {
   return (
     <>
       <Container styleOverrides={{ gap: 20 }}>
@@ -15,7 +13,7 @@ export const LevelComplete = (): React.ReactElement => {
         <Text>You earned 20 points!</Text>
         <Button
           containerStyle={{ marginBottom: 20 }}
-          onPress={() => navigator.dispatch(CommonActions.navigate('Dashboard'))}
+          onPress={() => navigation.navigate('Dashboard')}
         >
           <Text style={{ color: palette.white, fontSize: 16, fontWeight: '600' }}>
             I want more points!

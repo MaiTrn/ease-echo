@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Login } from './screens/auth/Login';
 import { Main } from './screens/main';
 import { LevelComplete } from './screens/level-complete/LevelComplete';
+import { Landing } from './screens/auth/Landing';
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -21,8 +22,10 @@ function App(): JSX.Element {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Login" component={Login} />
+      <Stack.Navigator initialRouteName="Landing" screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Landing" component={Landing} />
+        <Stack.Screen name="LoginAsPatient" component={Login('Patient')} />
+        <Stack.Screen name="LoginAsDoctor" component={Login('Doctor')} />
         <Stack.Screen name="Main" component={Main} />
         <Stack.Screen name="LevelComplete" component={LevelComplete} />
       </Stack.Navigator>
