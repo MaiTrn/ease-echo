@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Exercise } from './Exercise';
+import { PainExercise } from './pain-exercise';
 import { PainInfo } from './PainInfo';
 import { Distraction } from './Distraction';
 import { Profile } from './Profile';
@@ -22,7 +22,7 @@ const TabIcon = ({ focused, color, route }) => {
     color,
     weight: focused ? 'fill' : 'regular',
   };
-  if (route.name === 'Exercise') {
+  if (route.name === 'PainExercise') {
     return <MonitorPlay {...props} />;
   }
   if (route.name === 'Distraction') {
@@ -62,7 +62,7 @@ export const Main = (): React.ReactElement => {
         ),
       })}
     >
-      <Tab.Screen name="Exercise" component={Exercise} />
+      <Tab.Screen name="PainExercise" component={PainExercise} />
       <Tab.Screen name="Distraction" component={Distraction} />
       <Tab.Screen
         name="Dashboard"
