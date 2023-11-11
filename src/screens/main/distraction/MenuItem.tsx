@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Card } from 'react-native-paper';
+import { palette } from '../../../assets/constants';
 
 export const MenuItem = ({ onClick, title, icon }): React.ReactElement => {
   return (
-    <Card style={styles.card}>
+    <Card style={styles.card} mode="contained">
       <TouchableOpacity style={styles.buttonContainer} onPress={onClick}>
         <Card.Content style={styles.cardContent}>
           {icon}
@@ -33,6 +34,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: 250,
     height: 188,
+    backgroundColor: palette.cardBackground,
   },
   cardContent: {
     flex: 1,

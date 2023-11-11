@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
+import { palette } from '../assets/constants';
 
 interface ContainerProps {
   styleOverrides?: object;
@@ -14,5 +15,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: palette.white,
   },
 });

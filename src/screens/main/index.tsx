@@ -31,7 +31,7 @@ const TabIcon = ({ focused, color, route }) => {
   if (route.name === 'PainInfo') {
     return <ChatCircleDots {...props} />;
   }
-  if (route.name === 'Profile') {
+  if (route.name === 'UserProfile') {
     return <Ghost {...props} />;
   }
 };
@@ -47,11 +47,11 @@ export const Main = (): React.ReactElement => {
         tabBarShowLabel: false,
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: 'transparent',
+          backgroundColor: palette.background,
           borderTopWidth: 0,
         },
-        tabBarActiveTintColor: palette.primary,
-        tabBarInactiveTintColor: palette.darkGray,
+        tabBarActiveTintColor: palette.white,
+        tabBarInactiveTintColor: palette.white,
         tabBarIcon: (props) => <TabIcon {...props} route={route} />,
         tabBarButton: (props) => <TabBarButton {...props} />,
       })}
@@ -66,14 +66,14 @@ export const Main = (): React.ReactElement => {
             <HouseLine
               weight={focused ? 'fill' : 'regular'}
               size={focused ? '35' : '28'}
-              color={palette.background}
+              color={palette.white}
             />
           ),
           tabBarButton: (props) => <AddButton {...props} />,
         }}
       />
       <Tab.Screen name="PainInfo" component={PainInfo} />
-      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen name="UserProfile" component={Profile} />
     </Tab.Navigator>
   );
 };
