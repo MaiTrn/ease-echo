@@ -1,5 +1,5 @@
+import { Icon } from '@rneui/base/dist/Icon';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { Icon } from 'react-native-vector-icons';
 
 const ExerciseCard = ({ exercise, isFavorite }) => {
   return (
@@ -16,20 +16,20 @@ const ExerciseCard = ({ exercise, isFavorite }) => {
 
 const styles = StyleSheet.create({
   card: {
-    // flexDirection: 'row',
-    // padding: 10,
-    // marginVertical: 8,
-    // backgroundColor: '#fff',
-    // borderRadius: 5,
-    // shadowColor: '#000',
-    // shadowOffset: { width: 0, height: 1 },
-    // shadowOpacity: 0.22,
-    // shadowRadius: 2.22,
-    // elevation: 3,
-    // alignItems: 'center',
+    flexDirection: 'row',
+    padding: 10,
+    marginVertical: 8,
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    elevation: 3,
+    alignItems: 'center',
   },
   image: {
-    width: 300,
+    width: 200,
     height: 200,
     borderRadius: 25,
   },

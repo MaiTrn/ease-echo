@@ -1,5 +1,5 @@
 export const bodyParts = [
-  'quadriceps',
+  'quadriceps', 
   'abs',
   'knees',
   'calves',
@@ -22,3 +22,4 @@ export const bodyParts = [
   'gluteal',
   'hamstring',
 ];
+
