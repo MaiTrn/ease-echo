@@ -37,7 +37,7 @@ export const PainSelection = ({ navigation }): React.ReactElement => {
   const navigateToNextPage = () => {
     const bodyParts = bodyPartsSelected?.map((item) => item.slug);
     console.log(bodyParts);
-    navigation.navigate('Exercise', { bodyParts });
+    navigation.navigate('ExerciseList', { bodyParts });
   };
 
   return (

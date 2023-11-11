@@ -19,25 +19,21 @@ const UserProfile = (): React.ReactElement => {
       style={{
         display: 'flex',
         flexDirection: 'row',
-        backgroundColor: 'red',
-        width: '100%',
-        height: 100,
-        justifyContent: 'space-between',
-        padding: 0,
-        margin: 0,
+        flex: 1,
       }}
     >
       <UserAvatar />
-      <Container
-        styleOverrides={{
-          display: 'flex',
-          flexDirection: 'column',
-          flex: 'auto',
+      <View
+        style={{
+          justifyContent: 'space-between',
+          paddingTop: 50,
+          height: 100,
         }}
       >
+        <Text>Username</Text>
         <StatusBar progress={1} barColor="red" containerColor="black" trailing={currency} />
         <StatusBar progress={0.69} barColor="yellow" containerColor="black" trailing={lv} />
-      </Container>
+      </View>
     </View>
   );
 };
@@ -62,7 +58,7 @@ const StatusBar = ({ progress, barColor, containerColor, trailing }: StatusBarDa
       />
       <View
         style={{
-          width: 10,
+          height: 10,
         }}
       ></View>
       <Text>{trailing}</Text>

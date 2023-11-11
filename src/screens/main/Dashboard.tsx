@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   dashboardSection: {
-    padding: 10,
     borderRadius: 13,
     backgroundColor: 'red',
     justifyContent: 'center',
@@ -45,6 +44,5 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    gap: 5,
   },
 });

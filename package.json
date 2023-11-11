@@ -8,7 +8,8 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "doctor": "react-native doctor"
+    "doctor": "react-native doctor",
+    "link": "react-native link react-native-config"
   },
   "dependencies": {
     "@react-native-community/slider": "^4.4.3",
@@ -22,6 +23,8 @@
     "react": "18.2.0",
     "react-native": "0.72.6",
     "react-native-body-highlighter": "^3.0.0-beta.4",
+    "react-native-config": "^1.5.1",
+    "react-native-device-info": "^10.11.0",
     "react-native-dotenv": "^3.4.9",
     "react-native-gesture-handler": "^2.13.4",
     "react-native-image-picker": "^7.0.2",

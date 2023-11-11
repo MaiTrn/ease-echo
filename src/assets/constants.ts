@@ -1,3 +1,7 @@
+import { Dimensions } from 'react-native';
+
+const { width, height } = Dimensions.get('window');
+
 export const palette = {
   // primary: '#2b5865',
   // secondary: '#8fbdc2',
@@ -20,3 +24,6 @@ export const palette = {
   textSecondary: '#9a9a9a',
   textWhite: '#ffffff',
 };
+
+export const DEVICE_WIDTH = width;
+export const DEVICE_HEIGHT = height;

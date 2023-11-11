@@ -1,12 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TextInput, FlatList, ActivityIndicator, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  FlatList,
+  Image,
+  ActivityIndicator,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import { Button } from 'react-native-paper';
 import { Container } from '../../../components';
 import { palette } from '../../../assets/constants';
-import { exerciseOption, fetchData } from '../../../utils/fetchData'; // Make sure to import your API call configurations
-import { SealCheck } from 'phosphor-react-native';
+import { exerciseOption, fetchExerciseData } from '../../../utils/fetchExerciseData'; // Make sure to import your API call configurations
 
-export const Exercise = ({ navigation }): React.ReactElement => {
+export const renderExerciseCard = ({ item }) => {
+  return (
+    <TouchableOpacity>
+      <View style={styles.cardContainer}>
+        <Text style={styles.cardTitle}>{item.name}</Text>
+        <Image source={{ uri: item.gifUrl }} style={styles.cardImage} resizeMode="contain" />
+        {/* Additional exercise information can go here */}
+      </View>
+    </TouchableOpacity>
+  );
+};
+
+export const ExerciseList = ({ navigation }): React.ReactElement => {
   const [exercises, setExercises] = useState([]);
   const [search, setSearch] = useState('');
   const [bodyParts, setBodyParts] = useState([]);
@@ -15,7 +35,7 @@ export const Exercise = ({ navigation }): React.ReactElement => {
 
   useEffect(() => {
     const fetchExercisesData = async () => {
-      const bodyPartsData = await fetchData(
+      const bodyPartsData = await fetchExerciseData(
         'https://exercisedb.p.rapidapi.com/exercises/bodyPartList',
         exerciseOption,
       );
@@ -27,23 +47,28 @@ export const Exercise = ({ navigation }): React.ReactElement => {
 
   const handleSearch = async () => {
     if (!search) {
-      // Handle empty search query appropriately
       return;
     }
     setLoading(true);
     try {
       if (search) {
-        const exercisesData = await fetchData(
+        const exercisesData = await fetchExerciseData(
           'https://exercisedb.p.rapidapi.com/exercises',
           exerciseOption,
         );
-        const searchedExercises = exercisesData.filter(
+        const lowerCaseSearch = search.toLowerCase();
+        let searchedExercises = exercisesData?.filter(
           (item) =>
-            item.name.toLowerCase().includes(search) ||
-            item.target.toLowerCase().includes(search) ||
-            item.equipment.toLowerCase().includes(search) ||
-            item.bodyPart.toLowerCase().includes(search),
+            item.name.toLowerCase().includes(lowerCaseSearch) ||
+            item.target.toLowerCase().includes(lowerCaseSearch) ||
+            item.equipment.toLowerCase().includes(lowerCaseSearch) ||
+            item.bodyPart.toLowerCase().includes(lowerCaseSearch),
         );
+        if (lowerCaseSearch === 'all') {
+          searchedExercises = exercisesData;
+        }
+        console.log(searchedExercises);
+
         setSearch('');
         setExercises(searchedExercises);
       }
@@ -71,18 +96,11 @@ export const Exercise = ({ navigation }): React.ReactElement => {
         <FlatList
           data={exercises}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => (
-            <View style={styles.exerciseItem}>
-              <Text style={styles.exerciseText}>Exercise Name: {item.name}</Text>
-            </View>
-          )}
+          renderItem={renderExerciseCard}
+          showsVerticalScrollIndicator={false}
         />
       )}
-      <Button
-        mode="contained"
-        color={palette.primary}
-        onPress={() => navigation.navigate('LevelComplete')}
-      >
+      <Button mode="contained" onPress={() => navigation.navigate('LevelComplete')}>
         Complete Level
       </Button>
     </Container>
@@ -107,7 +125,25 @@ const styles = StyleSheet.create({
     color: palette.primary,
     // Add your styling here
   },
-  // Add other styles as needed
+  cardContainer: {
+    backgroundColor: '#FFF',
+    borderRadius: 8,
+    padding: 16,
+    alignItems: 'center',
+    marginBottom: 16,
+    elevation: 5,
+  },
+  cardTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: palette.primary,
+    marginBottom: 8,
+  },
+  cardImage: {
+    width: '100%',
+    height: 100,
+    marginBottom: 8,
+  },
 });
 
-export default Exercise;
+export default ExerciseList;
