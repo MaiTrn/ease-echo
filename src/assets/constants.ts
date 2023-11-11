@@ -10,7 +10,7 @@ export const palette = {
   action: '#e57601',
   cardBackground: '#f3f1f1',
   white: '#ffffff',
-  lightGray: 'd9d9d9',
+  lightGray: '#f0f0f0',
   darkGray: '#898C95',
 
   background: '#fafeff',

@@ -1,4 +1,3 @@
-import { StyleSheet, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { PainExercise } from './pain-exercise';
 import { PainInfo } from './PainInfo';
@@ -47,8 +46,10 @@ export const Main = (): React.ReactElement => {
         tabBarShowLabel: false,
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: palette.background,
+          backgroundColor: 'transparent',
           borderTopWidth: 0,
+          marginTop: -50, //make the background visible
+          elevation: 0,
         },
         tabBarActiveTintColor: palette.white,
         tabBarInactiveTintColor: palette.white,
@@ -77,17 +78,3 @@ export const Main = (): React.ReactElement => {
     </Tab.Navigator>
   );
 };
-
-const styles = StyleSheet.create({
-  containerStyle: {
-    flex: 1,
-    height: 80,
-    backgroundColor: palette.white,
-  },
-  buttonStyle: {
-    backgroundColor: palette.white,
-    height: 60,
-    width: 80,
-    borderRadius: 0,
-  },
-});

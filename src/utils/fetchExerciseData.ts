@@ -9,7 +9,6 @@ export const exerciseOption = {
 };
 
 export const fetchExerciseData = async (url, options) => {
-  console.log('apix', Config.EXERCISE_APP_RAPID_API_KEY);
   try {
     const response = await fetch(url, options);
     const data = await response.json();

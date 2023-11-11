@@ -1,48 +1,101 @@
 import React from 'react';
-import { Text, View, ScrollView, StyleSheet } from 'react-native';
-import { Container, ItemPreview } from '../../components';
-import { Button, Card } from 'react-native-paper';
-import SkeletonContent from 'react-native-skeleton-content';
-import UserProfile from '../../components/user-profile/UserProfile';
+import { Text, View, StyleSheet, Pressable } from 'react-native';
+import { Container, ItemPreview, ScrollContainer } from '../../components';
+import UserProfilePanel from '../../components/user-profile/UserProfilepanel';
+import { Plus } from 'phosphor-react-native';
 import { palette } from '../../assets/constants';
-
-const Avatar = ({ size }) => (
-  <View style={{ width: size, height: size, borderRadius: size / 2, backgroundColor: 'gray' }} />
-);
 
 export const Dashboard = ({ navigation }): React.ReactElement => {
   return (
-    <Container styleOverrides={styles.dashboard}>
-      <Text>Top Nav</Text>
-      <UserProfile />
-      <View style={styles.dashboardSection}>
-        <Text>Favorite Distraction</Text>
-        <View style={styles.itemContainer}>
-          <ItemPreview title={'Art'} />
-          <ItemPreview title={'Music'} />
-          <ItemPreview title={'More...'} handlePress={() => navigation.navigate('Distraction')} />
+    <Container>
+      <ScrollContainer styleOverrides={styles.scrollContainer}>
+        <UserProfilePanel />
+        <View style={styles.dashboardSection}>
+          <View style={styles.favoriteExercises}>
+            <Text style={styles.sectionTitle}>Favorite Exercises</Text>
+            <Pressable onPress={() => navigation.navigate('PainExercise')}>
+              <Plus size={20} color={palette2.primary} />
+            </Pressable>
+          </View>
+          <View style={styles.itemContainer}>
+            <ItemPreview title={'Ex 1'} />
+            <ItemPreview title={'Ex 2'} />
+            <ItemPreview title={'Ex 3'} />
+            <ItemPreview title={'Ex 4'} />
+            <ItemPreview title={'More...'} handlePress={() => navigation.navigate('Distraction')} />
+          </View>
         </View>
-      </View>
+        <View style={styles.dashboardSection}>
+          <View style={styles.favoriteExercises}>
+            <Text style={styles.sectionTitle}>Favorite Distraction</Text>
+            <Pressable
+              onPress={() => navigation.reset({ index: 0, routes: [{ name: 'Distraction' }] })}
+            >
+              <Plus size={20} color={palette2.primary} />
+            </Pressable>
+          </View>
+          <View style={styles.itemContainer}>
+            <ItemPreview title={'Art'} handlePress={() => navigation.navigate('Art')} />
+            <ItemPreview title={'Music'} handlePress={() => navigation.navigate('Music')} />
+            <ItemPreview title={'More...'} handlePress={() => navigation.navigate('Distraction')} />
+          </View>
+        </View>
+      </ScrollContainer>
     </Container>
   );
 };
 
+// Define your palette colors in this object
+const palette2 = {
+  primary: '#007bff',
+  lightGrey: '#f0f0f0',
+  midGrey: '#d6d6d6',
+  darkGrey: '#333',
+  red: '#ff3b30',
+};
+
 const styles = StyleSheet.create({
-  dashboard: {
-    paddingHorizontal: 37,
-    display: 'flex',
-    justifyContent: 'flex-start',
+  scrollContainer: {
+    paddingHorizontal: 20,
+    paddingTop: 50,
+    paddingBottom: 80,
   },
   dashboardSection: {
-    borderRadius: 13,
-    backgroundColor: 'red',
-    justifyContent: 'center',
-    alignItems: 'flex-start',
+    borderRadius: 20,
+    backgroundColor: palette.lightGray,
+    marginVertical: 10,
+    padding: 16,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   itemContainer: {
-    display: 'flex',
-    flexWrap: 'wrap',
     flexDirection: 'row',
+    flexWrap: 'wrap',
     justifyContent: 'flex-start',
+    marginVertical: 10,
+    marginHorizontal: -12,
+    gap: 5,
+  },
+  favoriteExercises: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  sectionTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: palette.darkGray,
+  },
+  avatar: {
+    backgroundColor: palette.lightGray,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image, TouchableWithoutFeedback } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, View, Image, TouchableWithoutFeedback, ScrollView } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
 import { DEVICE_HEIGHT, DEVICE_WIDTH, palette } from '../../../assets/constants';
-import { Container, Header } from '../../../components';
+import { Container, Header, ScrollContainer } from '../../../components';
 import { artPrompts } from '../../../assets/art-prompts';
 import { Button } from 'react-native-paper';
 import { Info, Image as ImageIcon, ArrowUDownLeft, FolderSimpleStar } from 'phosphor-react-native';
@@ -10,8 +10,13 @@ import { CommonActions } from '@react-navigation/native';
 
 export const Art = ({ navigation }) => {
   const [photo, setPhoto] = useState(null);
+  const [artPrompt, setArtPrompt] = useState(null);
 
-  const artPrompt = artPrompts[Math.floor(Math.random() * artPrompts.length)];
+  useEffect(() => {
+    if (!photo) {
+      setArtPrompt(artPrompts[Math.floor(Math.random() * artPrompts.length)]);
+    }
+  }, [photo]);
 
   const handleChoosePhoto = () => {
     launchImageLibrary(
@@ -37,23 +42,24 @@ export const Art = ({ navigation }) => {
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: palette.background,
-        width: DEVICE_WIDTH,
-        height: DEVICE_HEIGHT,
+    <Container
+      styleOverrides={{
+        paddingTop: 100,
       }}
     >
-      <Header title="Art distractions" LeftIcon={ArrowUDownLeft} RightIcon={FolderSimpleStar} />
+      <Header
+        title="Art distractions"
+        LeftIcon={ArrowUDownLeft}
+        onLeftPress={() => navigation.goBack()}
+      />
 
-      <Container>
+      <ScrollContainer>
         <View style={styles.header}>
           <Text style={styles.headerText}>Your art prompt for today is</Text>
         </View>
         <View style={styles.artPrompt}>
-          <Text style={styles.artPromptTitle}>{artPrompt.title}</Text>
-          <Text style={styles.artPromptText}>{artPrompt.content}</Text>
+          <Text style={styles.artPromptTitle}>{artPrompt?.title}</Text>
+          <Text style={styles.artPromptText}>{artPrompt?.content}</Text>
         </View>
         <View style={styles.extra}>
           <Info size={24} color="#9a9a9a" />
@@ -87,8 +93,8 @@ export const Art = ({ navigation }) => {
             <Text>Save</Text>
           </Button>
         </View>
-      </Container>
-    </View>
+      </ScrollContainer>
+    </Container>
   );
 };
 

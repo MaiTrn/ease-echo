@@ -1,21 +1,28 @@
 import React from 'react';
-import { Text, TouchableWithoutFeedback, View } from 'react-native';
-import { palette } from '../assets/constants';
+import { Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
+import { DEVICE_WIDTH, palette } from '../assets/constants';
 import { IconProps } from 'phosphor-react-native';
 
 interface HeaderProps {
   title: string;
   LeftIcon?: (props: IconProps) => React.JSX.Element;
   RightIcon?: (props: IconProps) => React.JSX.Element;
+  onLeftPress?: () => void;
+  onRightPress?: () => void;
 }
 
-export const Header = ({ title, LeftIcon, RightIcon }: HeaderProps): React.ReactElement => {
+export const Header = ({
+  title,
+  LeftIcon,
+  RightIcon,
+  onLeftPress,
+  onRightPress,
+}: HeaderProps): React.ReactElement => {
   return (
     <View
       style={{
         backgroundColor: palette.background,
         padding: 14,
-        margin: 25,
         shadowColor: '#000',
         shadowOffset: {
           width: 0,
@@ -24,7 +31,13 @@ export const Header = ({ title, LeftIcon, RightIcon }: HeaderProps): React.React
         shadowOpacity: 0.25,
         shadowRadius: 3,
         elevation: 3,
-        marginTop: 30,
+        paddingTop: 50,
+        position: 'absolute',
+        width: DEVICE_WIDTH,
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 10,
       }}
     >
       <View
@@ -33,15 +46,15 @@ export const Header = ({ title, LeftIcon, RightIcon }: HeaderProps): React.React
           justifyContent: 'space-between',
         }}
       >
-        <TouchableWithoutFeedback style={{ width: 32, height: 32 }}>
-          <LeftIcon size={32} />
-        </TouchableWithoutFeedback>
+        <TouchableOpacity style={{ width: 32, height: 32 }} onPress={onLeftPress}>
+          {LeftIcon && <LeftIcon size={32} />}
+        </TouchableOpacity>
 
         <Text style={{ fontSize: 24, fontWeight: '700' }}>{title}</Text>
 
-        <TouchableWithoutFeedback style={{ width: 32, height: 32 }}>
-          <RightIcon size={32} />
-        </TouchableWithoutFeedback>
+        <TouchableOpacity style={{ width: 32, height: 32 }} onPress={onRightPress}>
+          {RightIcon && <RightIcon size={32} />}
+        </TouchableOpacity>
       </View>
     </View>
   );
