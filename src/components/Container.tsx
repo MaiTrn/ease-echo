@@ -7,7 +7,9 @@ interface ContainerProps {
 }
 
 export const Container = ({ styleOverrides, children }: ContainerProps): React.ReactElement => {
-  return <View style={[styles.container, styleOverrides]}>{children}</View>;
+  return (
+    <ScrollView contentContainerStyle={[styles.container, styleOverrides]}>{children}</ScrollView>
+  );
 };
 
 const styles = StyleSheet.create({

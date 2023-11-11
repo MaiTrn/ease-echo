@@ -2,26 +2,47 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TouchableWithoutFeedback } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
 import { palette } from '../../../assets/constants';
-import { Container } from '../../../components';
+import { Container, Header } from '../../../components';
 import { artPrompts } from '../../../assets/art-prompts';
-import { Card } from 'react-native-paper';
-import { Info, Image as ImageIcon } from 'phosphor-react-native';
+import { Button } from 'react-native-paper';
+import { Info, Image as ImageIcon, ArrowUDownLeft, FolderSimpleStar } from 'phosphor-react-native';
+import { CommonActions } from '@react-navigation/native';
 
-export const Art = () => {
+export const Art = ({ navigation }) => {
   const [photo, setPhoto] = useState(null);
 
   const artPrompt = artPrompts[Math.floor(Math.random() * artPrompts.length)];
 
   const handleChoosePhoto = () => {
-    launchImageLibrary({ mediaType: 'photo' }, (response) => {
-      if (response) {
-        setPhoto(response);
-      }
-    });
+    launchImageLibrary(
+      {
+        mediaType: 'photo',
+        includeBase64: false,
+        maxHeight: 300,
+        maxWidth: 300,
+      },
+      (response) => {
+        console.log(response);
+        setPhoto(response.assets[0]);
+      },
+    );
+  };
+
+  const handleSave = () => {
+    navigation.navigate('LevelComplete');
+  };
+
+  const handleReset = () => {
+    setPhoto(null);
   };
 
   return (
     <Container>
+      <Header
+        title="Art distractions"
+        leftIcon={<ArrowUDownLeft />}
+        rightIcon={<FolderSimpleStar />}
+      />
       <View style={styles.header}>
         <Text style={styles.headerText}>Your art prompt for today is</Text>
       </View>
@@ -38,23 +59,54 @@ export const Art = () => {
       </View>
       <View style={styles.artUpload}>
         <Text style={styles.artUploadHeader}>Upload your creation here to get points</Text>
-        <View style={styles.artUploadBox}>
-          {photo && <Image source={{ uri: photo.uri }} style={{ width: 300, height: 300 }} />}
-          {!photo && (
-            <TouchableWithoutFeedback onPress={handleChoosePhoto}>
-              <View>
-                <ImageIcon size={24} color="#9a9a9a" />
-                <Text style={styles.artUploadText}>Select an image or file</Text>
-              </View>
-            </TouchableWithoutFeedback>
-          )}
-        </View>
+        {photo && (
+          <Image source={{ uri: photo.uri }} style={{ marginTop: 20, width: 200, height: 200 }} />
+        )}
+        {!photo && (
+          // <View style={styles.artUploadBox}>
+          <TouchableWithoutFeedback onPress={handleChoosePhoto}>
+            <View style={styles.artUploadBox}>
+              <ImageIcon size={24} color="#9a9a9a" />
+              <Text style={styles.artUploadText}>Select an image</Text>
+            </View>
+          </TouchableWithoutFeedback>
+          // </View>
+        )}
+      </View>
+
+      <View style={styles.buttonContainer}>
+        <Button mode="outlined" onPress={handleReset} style={styles.resetButton}>
+          <Text>Reset</Text>
+        </Button>
+        <Button mode="contained" onPress={handleSave} style={styles.saveButton} disabled={!photo}>
+          <Text>Save</Text>
+        </Button>
       </View>
     </Container>
   );
 };
 
 const styles = StyleSheet.create({
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 30,
+    marginHorizontal: 20,
+  },
+  saveButton: {
+    flex: 1,
+    marginHorizontal: 10,
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+    backgroundColor: palette.success,
+  },
+  resetButton: {
+    flex: 1,
+    marginHorizontal: 10,
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+    backgroundColor: palette.danger,
+  },
   header: {
     marginBottom: 20,
     backgroundColor: palette.primary,
@@ -89,7 +141,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'stretch',
-    gap: 20,
+    gap: 30,
+    borderRadius: 13,
   },
   extraText: {
     fontSize: 14,
@@ -98,6 +151,7 @@ const styles = StyleSheet.create({
   artUpload: {
     marginTop: 20,
     width: 300,
+    alignItems: 'center',
   },
   artUploadHeader: {
     fontSize: 16,
@@ -108,10 +162,14 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     padding: 20,
     backgroundColor: palette.cardBackground,
-    border: '10px dashed #9A9A9A',
+    borderWidth: 1,
+    borderColor: palette.textSecondary,
+    borderStyle: 'dashed',
+    borderRadius: 5,
     display: 'flex',
+    gap: 10,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   artUploadText: {

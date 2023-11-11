@@ -13,6 +13,8 @@ export const palette = {
   primary: '#66d6f5',
   secondary: '#cbf0fb',
   accent: '#ff5a1b',
+  success: '#07F482',
+  danger: '#ff0000',
 
   text: '#01080a',
   textSecondary: '#9a9a9a',

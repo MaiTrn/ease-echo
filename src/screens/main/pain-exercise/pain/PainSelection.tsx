@@ -115,7 +115,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   button: {
-    // Style your Button component
     margin: 10,
     backgroundColor: palette.primary,
     width: 25,
@@ -143,11 +142,12 @@ const styles = StyleSheet.create({
   saveButton: {
     flex: 1,
     marginHorizontal: 10,
-    backgroundColor: 'green', // Choose a color that fits your theme
+    backgroundColor: palette.success,
   },
   resetButton: {
     flex: 1,
     marginHorizontal: 10,
+    backgroundColor: palette.danger,
   },
   buttonFrequency: {
     display: 'flex',

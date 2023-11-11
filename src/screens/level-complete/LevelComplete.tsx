@@ -4,8 +4,10 @@ import { Image, StyleSheet, Text } from 'react-native';
 import { Container } from '../../components';
 import { palette } from '../../assets/constants';
 import { Button } from 'react-native-paper';
+import { CommonActions } from '@react-navigation/native';
 
 export const LevelComplete = ({ navigation }): React.ReactElement => {
+  console.log('console.log', navigation);
   return (
     <>
       <Container styleOverrides={{ gap: 20 }}>

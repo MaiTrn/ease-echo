@@ -3,3 +3,4 @@ export * from './AddButton';
 export * from './TextInput';
 export * from './Container';
 export * from './ItemPreview';
+export * from './Header';
