@@ -1,9 +1,9 @@
 import React from 'react';
 import { Text, View, StyleSheet, Pressable } from 'react-native';
 import { Container, ItemPreview, ScrollContainer } from '../../components';
-import UserProfilePanel from '../../components/user-profile/UserProfilepanel';
 import { Plus } from 'phosphor-react-native';
 import { palette } from '../../assets/constants';
+import UserProfilePanel from '../../components/UserProfilePanel';
 
 export const Dashboard = ({ navigation }): React.ReactElement => {
   return (
@@ -13,16 +13,21 @@ export const Dashboard = ({ navigation }): React.ReactElement => {
         <View style={styles.dashboardSection}>
           <View style={styles.favoriteExercises}>
             <Text style={styles.sectionTitle}>Favorite Exercises</Text>
-            <Pressable onPress={() => navigation.navigate('PainExercise')}>
+            <Pressable
+              onPress={() => navigation.reset({ index: 0, routes: [{ name: 'PainExercise' }] })}
+            >
               <Plus size={20} color={palette2.primary} />
             </Pressable>
           </View>
           <View style={styles.itemContainer}>
-            <ItemPreview title={'Ex 1'} />
-            <ItemPreview title={'Ex 2'} />
-            <ItemPreview title={'Ex 3'} />
-            <ItemPreview title={'Ex 4'} />
-            <ItemPreview title={'More...'} handlePress={() => navigation.navigate('Distraction')} />
+            <ItemPreview title={'Back'} />
+            <ItemPreview title={'Neck'} />
+            <ItemPreview title={'Hands'} />
+            <ItemPreview title={'Legs'} />
+            <ItemPreview
+              title={'More...'}
+              handlePress={() => navigation.reset({ index: 0, routes: [{ name: 'PainExercise' }] })}
+            />
           </View>
         </View>
         <View style={styles.dashboardSection}>
@@ -37,7 +42,10 @@ export const Dashboard = ({ navigation }): React.ReactElement => {
           <View style={styles.itemContainer}>
             <ItemPreview title={'Art'} handlePress={() => navigation.navigate('Art')} />
             <ItemPreview title={'Music'} handlePress={() => navigation.navigate('Music')} />
-            <ItemPreview title={'More...'} handlePress={() => navigation.navigate('Distraction')} />
+            <ItemPreview
+              title={'More...'}
+              handlePress={() => navigation.reset({ index: 0, routes: [{ name: 'Distraction' }] })}
+            />
           </View>
         </View>
       </ScrollContainer>

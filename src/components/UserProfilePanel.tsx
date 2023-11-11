@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, StyleSheet, Image, View } from 'react-native';
 import { Bar } from 'react-native-progress';
-import { palette } from '../../assets/constants';
+import { palette } from '../assets/constants';
 
 type StatusBarData = {
   progress: number;
@@ -19,8 +19,18 @@ const UserProfilePanel = (): React.ReactElement => {
       <UserAvatar />
       <View style={styles.statusBarWrapper}>
         <Text style={styles.usernameText}>Meow Knight</Text>
-        <StatusBar progress={1} barColor="#FF4136" containerColor="#F0F0F0" trailing={currency} />
-        <StatusBar progress={0.69} barColor="#0074D9" containerColor="#F0F0F0" trailing={lv} />
+        <StatusBar
+          progress={1}
+          barColor="#FF4136"
+          containerColor={palette.white}
+          trailing={currency}
+        />
+        <StatusBar
+          progress={0.69}
+          barColor="#0074D9"
+          containerColor={palette.white}
+          trailing={lv}
+        />
       </View>
     </View>
   );
@@ -29,7 +39,7 @@ const UserProfilePanel = (): React.ReactElement => {
 const UserAvatar = (): React.ReactElement => {
   return (
     <View style={styles.avatarBg}>
-      <Image source={require('../../assets/meow.png')} style={styles.image} />
+      <Image source={require('../assets/meow.png')} style={styles.image} />
     </View>
   );
 };

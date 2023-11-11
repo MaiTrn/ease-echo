@@ -86,11 +86,11 @@ export const Art = ({ navigation }) => {
         </View>
 
         <View style={styles.buttonContainer}>
-          <Button mode="outlined" onPress={handleReset} style={styles.resetButton}>
-            <Text>Reset</Text>
+          <Button mode="contained" onPress={handleReset} style={styles.resetButton}>
+            <Text style={styles.buttonText}>Reset</Text>
           </Button>
           <Button mode="contained" onPress={handleSave} style={styles.saveButton} disabled={!photo}>
-            <Text>Save</Text>
+            <Text style={styles.buttonText}>Save</Text>
           </Button>
         </View>
       </ScrollContainer>
@@ -104,20 +104,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     marginTop: 30,
     marginHorizontal: 20,
-  },
-  saveButton: {
-    flex: 1,
-    marginHorizontal: 10,
-    fontWeight: 'bold',
-    textTransform: 'uppercase',
-    backgroundColor: palette.success,
-  },
-  resetButton: {
-    flex: 1,
-    marginHorizontal: 10,
-    fontWeight: 'bold',
-    textTransform: 'uppercase',
-    backgroundColor: palette.danger,
   },
   header: {
     marginBottom: 20,
@@ -188,5 +174,19 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: palette.textSecondary,
     textAlign: 'justify',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+  },
+  saveButton: {
+    flex: 1,
+    marginHorizontal: 10,
+    backgroundColor: palette.accent,
+  },
+  resetButton: {
+    flex: 1,
+    marginHorizontal: 10,
+    backgroundColor: palette.darkGray,
   },
 });

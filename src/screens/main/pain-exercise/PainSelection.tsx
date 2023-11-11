@@ -58,9 +58,6 @@ export const PainSelection = ({ navigation }): React.ReactElement => {
           backOnly={false}
         />
         <Switch onValueChange={toggleSwitch} value={isBackSideEnabled} />
-        <Button buttonColor={palette.primary} style={styles.button} onPress={navigateToNextPage}>
-          <Text style={styles.buttonText}>Go to exercise</Text>
-        </Button>
         <Text style={styles.label}>Pain Intensity</Text>
         <Slider
           style={styles.slider}
@@ -76,11 +73,10 @@ export const PainSelection = ({ navigation }): React.ReactElement => {
           <Button
             mode="outlined"
             textColor={palette.primary}
-            style={styles.button}
-            contentStyle={{ width: 20 }}
+            contentStyle={styles.button}
             onPress={() => setPainFrequency(painFrequency[0])}
           >
-            <Text>Seldom</Text>
+            <Text style={styles.painButtonText}>1</Text>
           </Button>
           <Button
             mode="outlined"
@@ -88,7 +84,7 @@ export const PainSelection = ({ navigation }): React.ReactElement => {
             style={styles.button}
             onPress={() => setPainFrequency(painFrequency[1])}
           >
-            <Text>Often</Text>
+            <Text style={styles.painButtonText}>2</Text>
           </Button>
           <Button
             mode="outlined"
@@ -96,7 +92,7 @@ export const PainSelection = ({ navigation }): React.ReactElement => {
             style={styles.button}
             onPress={() => setPainFrequency(painFrequency[2])}
           >
-            <Text>Usually</Text>
+            <Text style={styles.painButtonText}>3</Text>
           </Button>
           <Button
             mode="outlined"
@@ -104,16 +100,20 @@ export const PainSelection = ({ navigation }): React.ReactElement => {
             style={styles.button}
             onPress={() => setPainFrequency(painFrequency[3])}
           >
-            <Text>Always</Text>
+            <Text style={styles.painButtonText}>4</Text>
           </Button>
         </Container>
 
         <Container styleOverrides={styles.buttonContainer}>
-          <Button mode="outlined" onPress={handleReset} style={styles.resetButton}>
-            <Text>Reset</Text>
+          <Button mode="contained" onPress={handleReset} style={styles.resetButton}>
+            <Text style={styles.buttonText}>Reset</Text>
           </Button>
-          <Button mode="contained" onPress={handleSave} style={styles.saveButton}>
-            <Text>Save</Text>
+          <Button
+            buttonColor={palette.primary}
+            style={styles.saveButton}
+            onPress={navigateToNextPage}
+          >
+            <Text style={styles.buttonText}>Go to exercise</Text>
           </Button>
         </Container>
       </ScrollContainer>
@@ -126,13 +126,18 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 20,
   },
+  exerciseButton: {
+    marginTop: 20,
+  },
   button: {
-    margin: 10,
-    padding: 1,
+    width: 70,
+  },
+  painButtonText: {
+    fontSize: 18,
   },
   buttonText: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 16,
   },
   slider: {
     width: '100%',
@@ -152,17 +157,18 @@ const styles = StyleSheet.create({
   saveButton: {
     flex: 1,
     marginHorizontal: 10,
-    backgroundColor: palette.success,
+    backgroundColor: palette.accent,
   },
   resetButton: {
     flex: 1,
     marginHorizontal: 10,
-    backgroundColor: palette.danger,
+    backgroundColor: palette.darkGray,
   },
   buttonFrequency: {
     display: 'flex',
     justifyContent: 'space-evenly',
     flexDirection: 'row',
-    gap: 20,
+    gap: 10,
+    paddingTop: 10,
   },
 });
