@@ -8,23 +8,13 @@ import {
   ActivityIndicator,
   StyleSheet,
   TouchableOpacity,
+  Pressable,
 } from 'react-native';
 import { Button } from 'react-native-paper';
 import { Container } from '../../../components';
 import { palette } from '../../../assets/constants';
 import { exerciseOption, fetchExerciseData } from '../../../utils/fetchExerciseData'; // Make sure to import your API call configurations
-
-export const renderExerciseCard = ({ item }) => {
-  return (
-    <TouchableOpacity>
-      <View style={styles.cardContainer}>
-        <Text style={styles.cardTitle}>{item.name}</Text>
-        <Image source={{ uri: item.gifUrl }} style={styles.cardImage} resizeMode="contain" />
-        {/* Additional exercise information can go here */}
-      </View>
-    </TouchableOpacity>
-  );
-};
+import { ExerciseCard } from './ExerciseCard';
 
 export const ExerciseList = ({ navigation }): React.ReactElement => {
   const [exercises, setExercises] = useState([]);
@@ -67,7 +57,7 @@ export const ExerciseList = ({ navigation }): React.ReactElement => {
         if (lowerCaseSearch === 'all') {
           searchedExercises = exercisesData;
         }
-        console.log(searchedExercises);
+        // console.log(searchedExercises);
 
         setSearch('');
         setExercises(searchedExercises);
@@ -96,7 +86,7 @@ export const ExerciseList = ({ navigation }): React.ReactElement => {
         <FlatList
           data={exercises}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={renderExerciseCard}
+          renderItem={({ item }) => <ExerciseCard item={item} />}
           showsVerticalScrollIndicator={false}
         />
       )}
@@ -124,25 +114,6 @@ const styles = StyleSheet.create({
   exerciseText: {
     color: palette.primary,
     // Add your styling here
-  },
-  cardContainer: {
-    backgroundColor: '#FFF',
-    borderRadius: 8,
-    padding: 16,
-    alignItems: 'center',
-    marginBottom: 16,
-    elevation: 5,
-  },
-  cardTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: palette.primary,
-    marginBottom: 8,
-  },
-  cardImage: {
-    width: '100%',
-    height: 100,
-    marginBottom: 8,
   },
 });
 
